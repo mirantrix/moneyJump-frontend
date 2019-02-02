@@ -34,8 +34,8 @@ $npm install -g create-react-app
 
 ```
 
-$ git clone https://github.com/mirantrix/codeSampleExercises.git
-$ cd mentor-react
+$ git clone https://github.com/mirantrix/moneyJump-frontend.git
+$ cd moneyJump-frontend
 $ npm start
 
 ```
