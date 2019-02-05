@@ -25,7 +25,7 @@ The MoneyJump App helps you with your personal finance, you will be able to view
 • React JS 
 ```
 
-$npm install -g create-react-app
+$npm install create-react-app
 
 ```
 
