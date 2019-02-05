@@ -4,7 +4,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <p>Hello World</p>
+      <p>Hello World This is React JS</p>
     );
   }
 }
