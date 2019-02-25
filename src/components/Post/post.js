@@ -3,32 +3,25 @@ import axios from 'axios';
 
 class Post extends Component {
 
-  state = {
-    selectedFile: ""
+  constructor(){
+    super();
+    this.state = {users:[]}
   }
 
   fileSelectedHandler = event => {
-    this.setState({
-      selectedFile: event.target.files[0]
-    })
+    this.setState({selectedFile: event.target.files[0]})
   }
 
   fileUploadHandler = () => {
     const formData = new FormData();
+    const config = {headers: { 'content-type': 'multipart/form-data' }}
+
     formData.append('title', this.state.selectedFile.name);
     formData.append('uploadFile', this.state.selectedFile);
 
-    const config = {
-        headers: { 'content-type': 'multipart/form-data' }
-    }
-
     axios.post('http://localhost:5000/api/upload-data', formData, config)
-      .then( res => {
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error.response)
-      });
+      .then( res => console.log(res))
+      .catch(error => console.log(error.response));
   }
 
   render() {
