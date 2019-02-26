@@ -5,7 +5,11 @@ class Post extends Component {
 
   constructor(){
     super();
-    this.state = {users:[]}
+    this.state = {
+      owner: "Alex",
+      title: "02-2019",
+      selectedFile: ""
+    }
   }
 
   fileSelectedHandler = event => {
@@ -16,11 +20,12 @@ class Post extends Component {
     const formData = new FormData();
     const config = {headers: { 'content-type': 'multipart/form-data' }}
 
-    formData.append('title', this.state.selectedFile.name);
+    formData.append('owner', this.state.owner);
+    formData.append('title', this.state.title);
     formData.append('uploadFile', this.state.selectedFile);
 
     axios.post('http://localhost:5000/api/upload-data', formData, config)
-      .then( res => console.log(res))
+      .then( res => console.log(res, this.state))
       .catch(error => console.log(error.response));
   }
 
