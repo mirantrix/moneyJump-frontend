@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Inputs from '../../components/Inputs/inputs';
+
 import axios from 'axios';
 
 class Post extends Component {
@@ -6,22 +8,23 @@ class Post extends Component {
   constructor(){
     super();
     this.state = {
-      owner: "Alex",
-      title: "02-2019",
-      selectedFile: ""
+      name: ""
     }
   }
 
-  fileSelectedHandler = event => {
-    this.setState({selectedFile: event.target.files[0]})
+
+  handleInputData = (name, value) => {
+    this.setState({[name]:value});
   }
 
+
   fileUploadHandler = () => {
+
     const formData = new FormData();
     const config = {headers: { 'content-type': 'multipart/form-data' }}
 
     formData.append('owner', this.state.owner);
-    formData.append('title', this.state.title);
+    formData.append('title', [this.state.month, this.state.year]);
     formData.append('uploadFile', this.state.selectedFile);
 
     axios.post('http://localhost:5000/api/upload-data', formData, config)
@@ -29,10 +32,11 @@ class Post extends Component {
       .catch(error => console.log(error.response));
   }
 
+
   render() {
     return (
       <div>
-        <input type="file" onChange={this.fileSelectedHandler}/>
+        <Inputs thisAreTheProps = {this.handleInputData}/>
         <button onClick={this.fileUploadHandler}>Upload</button>
       </div>
     );
