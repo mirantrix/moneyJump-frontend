@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
+class User extends Component {
 
-class Users extends Component {
-  constructor(){
-    super();
-    this.state = {users:[]}
-  }
+  state = {users:[]}
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/users')
-      .then(res => res.json(console.log(res)))
+    const getUsersData = axios.create({
+      url: '/users',
+      baseURL: 'http://localhost:5000/api/',
+      method: 'get'
+    });
+
+    getUsersData()
+      .then(res => res.data)
       .then(users => this.setState({users: users}, () => console.log('Users fetched...', users)))
+      .catch(error => console.log(error.response));
   }
 
   render() {
@@ -27,4 +32,4 @@ class Users extends Component {
   }
 }
 
-export default Users;
+export default User;
