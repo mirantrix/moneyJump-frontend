@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../components/Input/input';
-import axios from 'axios';
+import Api from '../../services/Api/api';
 
 class PostForm extends Component {
 
@@ -16,28 +16,15 @@ class PostForm extends Component {
   }
 
   fileUploadHandler = () => {
-
     const formData = new FormData();
     formData.append('owner', this.state.owner);
     formData.append('title', [this.state.month, this.state.year]);
     formData.append('uploadFile', this.state.selectedFile);
 
-    const postInputData = axios.create({
-      url: '/upload-data',
-      baseURL: 'http://localhost:5000/api/',
-      headers: { 'content-type': 'multipart/form-data' },
-      method: 'post',
-      data: formData
-    });
-
-    postInputData()
-      .then(res => console.log(res, this.state))
-      .catch(error => console.log(error.response));
+    Api.uploadBankStatementFile(formData)
+    .then(res => console.log(res, this.state))
+    .catch(error => console.log(error.response));
   }
-
-  componentDidMount = () => {
-  }
-
 
   render() {
     return (

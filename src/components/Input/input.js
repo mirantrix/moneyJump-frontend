@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Api from '../../services/Api/api';
 
 class Input extends Component {
 
@@ -18,20 +18,14 @@ class Input extends Component {
   }
 
   componentDidMount(){
-    const getUsersData = axios.create({
-      url: '/ownersList',
-      baseURL: 'http://localhost:5000/api/',
-      method: 'get'
-    });
-
-    getUsersData()
-      .then(res => res.data)
-      .then(inputFields => this.setState({
-        ownersList: inputFields.ownersList,
-        monthList: inputFields.monthList,
-        yearList: inputFields.yearList,
-      }, () => console.log(inputFields)))
-      .catch(error => console.log(error.response));
+    Api.getInputs()
+    .then(res => res.data)
+    .then(inputFields => this.setState({
+      ownersList: inputFields.ownersList,
+      monthList: inputFields.monthList,
+      yearList: inputFields.yearList,
+    }, () => console.log(inputFields)))
+    .catch(error => console.log(error.response));
   }
 
 

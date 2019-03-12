@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Api from '../../services/Api/api';
 
 class User extends Component {
 
   state = {users:[]}
 
   componentDidMount() {
-    const getUsersData = axios.create({
-      url: '/users',
-      baseURL: 'http://localhost:5000/api/',
-      method: 'get'
-    });
-
-    getUsersData()
+    Api.getUsers()
       .then(res => res.data)
       .then(users => this.setState({users: users}, () => console.log('Users fetched...', users)))
       .catch(error => console.log(error.response));
