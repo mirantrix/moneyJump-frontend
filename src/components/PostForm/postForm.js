@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import Input from '../../components/Input/input';
+import Input from '../Input/input';
 import Api from '../../services/Api/api';
 
 class PostForm extends Component {
-
   state = {
-    owner: "",
-    selectedFile: "",
-    month:"",
-    year:""
-  }
+    owner: '',
+    selectedFile: '',
+    month: '',
+    year: '',
+  };
 
   handleInputData = (name, value) => {
-    this.setState({[name]:value});
-  }
+    this.setState({ [name]: value });
+  };
 
   fileUploadHandler = () => {
     const formData = new FormData();
@@ -22,14 +21,14 @@ class PostForm extends Component {
     formData.append('uploadFile', this.state.selectedFile);
 
     Api.uploadBankStatementFile(formData)
-    .then(res => console.log(res, this.state))
-    .catch(error => console.log(error.response));
-  }
+      .then(res => console.log(res, this.state))
+      .catch(error => console.log(error.response));
+  };
 
   render() {
     return (
       <div>
-        <Input handleInputData = {this.handleInputData}/>
+        <Input handleInputData={this.handleInputData} />
         <button onClick={this.fileUploadHandler}>Upload</button>
       </div>
     );

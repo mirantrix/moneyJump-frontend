@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import PostForm from './components/PostForm/postForm'
+import React, { Component } from 'react';
+import PostForm from './components/PostForm/postForm';
 
 class App extends Component {
-  render () {
+  render() {
     return (
-      <div className='App'>
+      <div className="App">
         <PostForm />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

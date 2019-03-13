@@ -1,24 +1,20 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/api/'
-})
+  baseURL: 'http://localhost:5000/api/',
+});
 
-const uploadBankStatementFile = (bankStatementFile) => {
-  const headers = { 'content-type': 'multipart/form-data' }
-  return axiosInstance.post('/upload-bank-statement-file', bankStatementFile, headers)
-}
+const uploadBankStatementFile = bankStatementFile => {
+  const headers = { 'content-type': 'multipart/form-data' };
+  return axiosInstance.post('/upload-bank-statement-file', bankStatementFile, headers);
+};
 
-const getUsers = () => {
-  return axiosInstance.get('http://localhost:5000/api/users')
-}
+const getUsers = () => axiosInstance.get('http://localhost:5000/api/users');
 
-const getInputs = () => {
-  return axiosInstance.get('/input-data')
-}
+const getInputs = () => axiosInstance.get('/input-data');
 
-export default{
+export default {
   uploadBankStatementFile,
   getUsers,
-  getInputs
-}
+  getInputs,
+};
